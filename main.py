@@ -4,7 +4,6 @@ import numpy as np
 
 # Inicio de la simulación:
 print('Negocio de arepas')
-# random.seed(SEMILLA)
 env = simpy.Environment()
 servidor = simpy.Resource(env, capacity=1)
 robot = simulacion.Cliente(env, servidor)
