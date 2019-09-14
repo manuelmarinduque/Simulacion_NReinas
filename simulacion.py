@@ -116,28 +116,12 @@ class Cliente():
 				UTILIDAD -= 10
 				PIERDE_PROFESOR += 1
 				# Se realiza el tiempo de servicio:
-				yield self.__env.timeout(tiempo_vegas*10000)
+				yield self.__env.timeout(tiempo_vegas)
 			else:
 				print("			Gana el profesor")
 				UTILIDAD += 15
 				UTILIDAD_PROFESOR += 15
 				# Se realiza el tiempo de servicio:
-				yield self.__env.timeout(tiempo_determinista*10000)
+				yield self.__env.timeout(tiempo_determinista)
 			
 			print(f'Al minuto{self.__env.now:7.2f} sale el robot {nombre}')
-
-
-# Inicio de la simulación
-
-print('Negocio de arepas')
-env = simpy.Environment()
-servidor = simpy.Resource(env, capacity=1)
-robot = Cliente(env, servidor)
-env.process(finalizacion(env, robot))
-env.run()
-
-print(f"Cola máxima {MAX_COLA}")
-print(f'El tiempo promedio de espera es: {np.mean(ESPERA_ROBOT):7.2f}')
-print(f'La utilidad propia de la persona es {UTILIDAD}')
-print(f'La utilidad del profesor es {UTILIDAD_PROFESOR}')
-print(f'El profesor perdió una cantidad de {PIERDE_PROFESOR} veces')
