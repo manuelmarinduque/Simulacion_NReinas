@@ -116,13 +116,13 @@ class Cliente():
 				UTILIDAD -= 10
 				PIERDE_PROFESOR += 1
 				# Se realiza el tiempo de servicio:
-				yield self.__env.timeout(tiempo_vegas*10000)
+				yield self.__env.timeout(tiempo_vegas)
 			else:
 				print("			Gana el profesor")
 				UTILIDAD += 15
 				UTILIDAD_PROFESOR += 15
 				# Se realiza el tiempo de servicio:
-				yield self.__env.timeout(tiempo_determinista*10000)
+				yield self.__env.timeout(tiempo_determinista)
 			
 			print(f'Al minuto{self.__env.now:7.2f} sale el robot {nombre}')
 
